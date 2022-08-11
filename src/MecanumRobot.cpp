@@ -191,12 +191,13 @@ namespace MecanumRobot{
             }
         }
 
-        RadioRemote::modeAbsoluteRelativeSignal->set(ControlLogic::isInRelativeMode());
+        RadioRemote::modeOutputSignal->set(ControlLogic::isInCompassMode());
+        RadioRemote::speedOutputSignal->set(ControlLogic::isInRabbitMode());
 
         if(controlState == ControlState::ENABLED){
             ControlLogic::setXVelocityNormalized(RadioRemote::xAxisStick->getValue());
             ControlLogic::setYVelocityNormalized(RadioRemote::yAxisStick->getValue());
-            ControlLogic::setRotationalVelocityNormalized(RadioRemote::zAxisStick->getValue());
+            ControlLogic::setRotationalVelocityNormalized(-RadioRemote::zAxisStick->getValue());
             ControlLogic::update();
             for(int i = 0; i < WHEEL_COUNT; i++) servoMotors[i].setVelocity(ControlLogic::wheelVelocity[i]);
         }else{

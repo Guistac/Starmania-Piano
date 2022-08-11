@@ -24,8 +24,8 @@ namespace RadioRemote{
     Joystick* yAxisStick = new Joystick(NEGATIVE_Y_AXIS_PIN, POSITIVE_Y_AXIS_PIN);
     Joystick* zAxisStick = new Joystick(NEGATIVE_Z_AXIS_PIN, POSITIVE_Z_AXIS_PIN);
 
-    OutputSignal* modeMecanumTamponSignal = new OutputSignal(MODE_MECANUM_TAMPON_FEEDBACK_PIN);
-    OutputSignal* modeAbsoluteRelativeSignal = new OutputSignal(MODE_ABSOLUTE_RELATIVE_FEEDBACK_PIN);
+    OutputSignal* speedOutputSignal = new OutputSignal(SPEED_FEEDBACK_PIN);
+    OutputSignal* modeOutputSignal = new OutputSignal(MODE_FEEDBACK_PIN);
 
     bool b_armed = false;
     bool b_armingChanged = false;
@@ -51,8 +51,8 @@ namespace RadioRemote{
         yAxisStick->init();
         zAxisStick->init();
 
-        modeMecanumTamponSignal->init(false);
-        modeAbsoluteRelativeSignal->init(false);
+        speedOutputSignal->init(false);
+        modeOutputSignal->init(false);
 
         emergencyStopSwitch->reset();
         reset();
@@ -86,10 +86,10 @@ namespace RadioRemote{
         #ifdef DEBUG_REMOTE
         Serial.println("---Radio Remote-----------------------------------------");
         if(emergencyStopSwitch->isOff()){
-            Serial.printf("Rearm: %s %s\n", rearmButton->isPressed() ? "PRESS !" : (rearmButton->isDown() ? "pressed" : "not pressed"), rearmButton->isLongPressed() ? "(Long Pressed)" : "");
-            Serial.printf("Mode Tampon: %s %s\n", modeTamponButton->isPressed() ? "PRESS !" : (modeTamponButton->isDown() ? "pressed" : "not pressed"), modeTamponButton->isLongPressed() ? "(Long Pressed)" : "");
-            Serial.printf("Mode Mecanum: %s %s\n", modeMecanumButton->isPressed() ? "PRESS !" : (modeMecanumButton->isDown() ? "pressed" : "not pressed"), modeMecanumButton->isLongPressed() ? "(Long Pressed)" : "");
-            Serial.printf("Homing Tampon: %s %s\n", homingTamponButton->isPressed() ? "PRESS !" : (homingTamponButton->isDown() ? "pressed" : "not pressed"), homingTamponButton->isLongPressed() ? "(Long Pressed)" : "");
+            //Serial.printf("Rearm: %s %s\n", rearmButton->isPressed() ? "PRESS !" : (rearmButton->isDown() ? "pressed" : "not pressed"), rearmButton->isLongPressed() ? "(Long Pressed)" : "");
+            //Serial.printf("Mode Tampon: %s %s\n", modeTamponButton->isPressed() ? "PRESS !" : (modeTamponButton->isDown() ? "pressed" : "not pressed"), modeTamponButton->isLongPressed() ? "(Long Pressed)" : "");
+            //Serial.printf("Mode Mecanum: %s %s\n", modeMecanumButton->isPressed() ? "PRESS !" : (modeMecanumButton->isDown() ? "pressed" : "not pressed"), modeMecanumButton->isLongPressed() ? "(Long Pressed)" : "");
+            //Serial.printf("Homing Tampon: %s %s\n", homingTamponButton->isPressed() ? "PRESS !" : (homingTamponButton->isDown() ? "pressed" : "not pressed"), homingTamponButton->isLongPressed() ? "(Long Pressed)" : "");
             Serial.printf("Mode Absolu: %s %s\n", modeAbsoluteButton->isPressed() ? "PRESS !" : (modeAbsoluteButton->isDown() ? "pressed" : "not pressed"), modeAbsoluteButton->isLongPressed() ? "(Long Pressed)" : "");
             Serial.printf("Mode Relatif: %s %s\n", modeRelativeButton->isPressed() ? "PRESS !" : (modeRelativeButton->isDown() ? "pressed" : "not pressed"), modeRelativeButton->isLongPressed() ? "(Long Pressed)" : "");
             Serial.printf("Vitesse Rapide:  %s\n", fastSpeedModeSwitch->isFlipped() ? "FLIPPED" : (fastSpeedModeSwitch->isOn() ? "On" : "Off"));

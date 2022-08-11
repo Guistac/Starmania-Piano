@@ -66,40 +66,35 @@
 #define EMERGENCY_STOP_PIN 23
 //#define REARM_BUTTON_PIN 27
 
-#define MODE_ABSOLUTE_RELATIVE_FEEDBACK_PIN 19 //mode absolu / relative
-#define MODE_MECANUM_TAMPON_FEEDBACK_PIN 18 //mode mecanum / tampon
+#define SPEED_FEEDBACK_PIN 19 //fast / slow speed
+#define MODE_FEEDBACK_PIN 18 //mode absolute / relative
 
 //——————————————— LED PIN ASSIGNEMENT ———————————————
 
 #define INTERNAL_LED_PIN 13
 #define GREEN_LED_PIN 25
-#define RED_LED_PIN 24
-
+#define RED_LED_PIN 26
 
 //——————————————— CONTROL LOGIC ———————————————
 
-#define WHEEL_DIAMETER_MM 203.0
+#define WHEEL_DIAMETER_MM 152.4
 
-//long distance: 2520mm
-//short distance: 1720mm
-//wheel diameter: 203mm
+#define FRONT_LEFT_WHEEL_POSITION_MM    Vector2{.x = -700.0, .y = 700.0}
+#define FRONT_RIGHT_WHEEL_POSITION_MM   Vector2{.x = 700.0, .y = 700.0}
+#define BACK_LEFT_WHEEL_POSITION_MM     Vector2{.x = -700.0, .y = -700.0}
+#define BACK_RIGHT_WHEEL_POSITION_MM    Vector2{.x = 700.0, .y = -700.0}
 
-#define FRONT_LEFT_WHEEL_POSITION_MM    Vector2{.x = -860.0,  .y = 1260.0}
-#define FRONT_RIGHT_WHEEL_POSITION_MM   Vector2{.x = 860.0,   .y = 1260.0}
-#define BACK_LEFT_WHEEL_POSITION_MM     Vector2{.x = -860.0,  .y = -1260.0}
-#define BACK_RIGHT_WHEEL_POSITION_MM    Vector2{.x = 860.0,   .y = -1260.0}
+#define FAST_TRANSLATION_VELOCITY_LIMIT_MMPS 600.0  //translation velocity limit in millimeters per second
+#define FAST_TRANSLATION_ACCELERATION_MMPS2 300.0   //fixed translation acceleration in millimeters per second squared
+#define FAST_ROTATION_VELOCITY_LIMIT_DEGPS 30.0     //rotation velocity limit in degrees per second 
+#define FAST_ROTATION_ACCELERATION_DEGPS2 15.0      //fixed rotation acceleration in degrees per second squared
 
-#define FAST_TRANSLATION_VELOCITY_LIMIT_MMPS 200.0  //translation velocity limit in millimeters per second
-#define FAST_TRANSLATION_ACCELERATION_MMPS2 100.0   //fixed translation acceleration in millimeters per second squared
-#define FAST_ROTATION_VELOCITY_LIMIT_DEGPS 15.0     //rotation velocity limit in degrees per second 
-#define FAST_ROTATION_ACCELERATION_DEGPS2 5.0      //fixed rotation acceleration in degrees per second squared
+#define SLOW_TRANSLATION_VELOCITY_LIMIT_MMPS 300.0  //translation velocity limit in millimeters per second
+#define SLOW_TRANSLATION_ACCELERATION_MMPS2 150.0   //fixed translation acceleration in millimeters per second squared
+#define SLOW_ROTATION_VELOCITY_LIMIT_DEGPS 15.0     //rotation velocity limit in degrees per second
+#define SLOW_ROTATION_ACCELERATION_DEGPS2 7.5     //fixed rotation acceleration in degrees per second squared
 
-#define SLOW_TRANSLATION_VELOCITY_LIMIT_MMPS 100.0  //translation velocity limit in millimeters per second
-#define SLOW_TRANSLATION_ACCELERATION_MMPS2 100.0   //fixed translation acceleration in millimeters per second squared
-#define SLOW_ROTATION_VELOCITY_LIMIT_DEGPS 5.0     //rotation velocity limit in degrees per second
-#define SLOW_ROTATION_ACCELERATION_DEGPS2 5.0      //fixed rotation acceleration in degrees per second squared
-
-#define HEADING_CORRECTION_FACTOR 1.1800 //mesuré au milieu de la menuiserie (1.1699 mesuré a l'entrée de la menuiserie)
+#define HEADING_CORRECTION_FACTOR 1.176 //mesuré au milieu du grand atelier
 
 //wheel friction vectors for mecanum wheels mounted in an X formation
 //motor inversions are compensated with vector directions
@@ -115,9 +110,8 @@
 
 //——————————————— SERVO MOTORS ———————————————
 
-#define PULSES_PER_WHEEL_REVOLUTION 12800  //is equal to pulses per motor revolution * gear reduction 
+#define PULSES_PER_WHEEL_REVOLUTION 6400  //is equal to pulses per motor revolution * gear reduction 
 #define MAX_MOTOR_VELOCITY_RPS 3.333      //max velocity for the wheels
-//TODO: adjust this
 #define ACCELERATION_RPS2 10.0
 
 #define MAX_PULSE_FREQUENCY 500000.0

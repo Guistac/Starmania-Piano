@@ -27,6 +27,6 @@ namespace RadioRemote {
     extern Switch* emergencyStopSwitch;
     //extern Button* rearmButton;
 
-    extern OutputSignal* modeMecanumTamponSignal;
-    extern OutputSignal* modeAbsoluteRelativeSignal;
+    extern OutputSignal* speedOutputSignal;
+    extern OutputSignal* modeOutputSignal;
 }
