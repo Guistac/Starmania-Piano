@@ -13,8 +13,10 @@ namespace ControlLogic{
 
     void setRabbitMode();
     void setSnailMode();
+    void setZeroSpeedMode();
     bool isInRabbitMode();
     bool isInSnailMode();
+    bool isInZeroSpeedMode();
 
     void setRelativeMode();
     void setCompassMode();

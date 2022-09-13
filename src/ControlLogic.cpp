@@ -5,6 +5,13 @@
 
 namespace ControlLogic{
 
+    enum class SpeedMode{
+        OFF,
+        SNAIL,
+        RABBIT
+    };
+    SpeedMode speedMode = SpeedMode::OFF;
+
     double xVelActual_mmPerSec = 0.0;
     double yVelActual_mmPerSec = 0.0;
     double rotVelActual_degPerSec = 0.0;
@@ -19,40 +26,45 @@ namespace ControlLogic{
     double rotAcc_degPerSecSq = 0.0;
 
     //====== Rabbit & Snail Modes ======
-
-    double rabbitTranslationVelocityLimit_mmPerSec = FAST_TRANSLATION_VELOCITY_LIMIT_MMPS;
-    double rabbitTranslationAcceleration_mmPerSecSq = FAST_TRANSLATION_ACCELERATION_MMPS2;
-    double rabbitRotationVelocityLimit_degPerSec = FAST_ROTATION_VELOCITY_LIMIT_DEGPS;
-    double rabbitRotationAcceleration_degPerSecSq = FAST_ROTATION_ACCELERATION_DEGPS2;
-
-    double snailTranslationVelocityLimit_mmPerSecond = SLOW_TRANSLATION_VELOCITY_LIMIT_MMPS;
-    double snailTranslationAcceleration_mmPerSecSq = SLOW_TRANSLATION_ACCELERATION_MMPS2;
-    double snailRotationVelocityLimit_degPerSecond = SLOW_ROTATION_VELOCITY_LIMIT_DEGPS;
-    double snailRotationAcceleration_degPerSecSq = SLOW_ROTATION_ACCELERATION_DEGPS2;
-
-    bool b_rabbitMode = false;
     void setRabbitMode(){
-        translAcc_mmPerSecSq = rabbitTranslationAcceleration_mmPerSecSq;
-        rotAcc_degPerSecSq = rabbitRotationAcceleration_degPerSecSq;
-        translVelLim_mmPerSec = rabbitTranslationVelocityLimit_mmPerSec;
-        rotVelLim_degPerSec = rabbitRotationVelocityLimit_degPerSec;
-        b_rabbitMode = true;
+        translAcc_mmPerSecSq = FAST_TRANSLATION_ACCELERATION_MMPS2;
+        rotAcc_degPerSecSq = FAST_ROTATION_ACCELERATION_DEGPS2;
+        translVelLim_mmPerSec = FAST_TRANSLATION_VELOCITY_LIMIT_MMPS;
+        rotVelLim_degPerSec = FAST_ROTATION_VELOCITY_LIMIT_DEGPS;
+        speedMode = SpeedMode::RABBIT;
         #ifdef DEBUG_STATECHANGES
         Serial.println("Setting Rabbit Speed");
         #endif
     }
     void setSnailMode(){
-        translAcc_mmPerSecSq = snailTranslationAcceleration_mmPerSecSq;
-        rotAcc_degPerSecSq = snailRotationAcceleration_degPerSecSq;
-        translVelLim_mmPerSec = snailTranslationVelocityLimit_mmPerSecond;
-        rotVelLim_degPerSec = snailRotationVelocityLimit_degPerSecond;
-        b_rabbitMode = false;
+        translAcc_mmPerSecSq = SLOW_TRANSLATION_ACCELERATION_MMPS2;
+        rotAcc_degPerSecSq = SLOW_ROTATION_ACCELERATION_DEGPS2;
+        translVelLim_mmPerSec = SLOW_TRANSLATION_VELOCITY_LIMIT_MMPS;
+        rotVelLim_degPerSec = SLOW_ROTATION_VELOCITY_LIMIT_DEGPS;
+        speedMode = SpeedMode::SNAIL;
         #ifdef DEBUG_STATECHANGES
         Serial.println("Setting Snail Speed");
         #endif
     }
-    bool isInRabbitMode(){ return b_rabbitMode; }
-    bool isInSnailMode(){ return !b_rabbitMode; }
+
+    void setZeroSpeedMode(){
+        translAcc_mmPerSecSq = FAST_TRANSLATION_ACCELERATION_MMPS2;
+        rotAcc_degPerSecSq = FAST_ROTATION_ACCELERATION_DEGPS2;
+        translVelLim_mmPerSec = 0.0;
+        rotVelLim_degPerSec = 0.0;
+        xVelTarg_mmPerSec = 0.0;
+        yVelTarg_mmPerSec = 0.0;
+        rotVelTarg_degPerSec = 0.0;
+        speedMode = SpeedMode::OFF;
+        #ifdef DEBUG_STATECHANGES
+        Serial.println("Setting Zero Speed Mode");
+        #endif
+    }
+
+    bool isInRabbitMode(){ return speedMode == SpeedMode::RABBIT; }
+    bool isInSnailMode(){ return speedMode == SpeedMode::SNAIL; }
+    bool isInZeroSpeedMode(){ return speedMode == SpeedMode::OFF; }
+
 
     bool b_compassMode = false;
     void setRelativeMode(){ b_compassMode = false; }

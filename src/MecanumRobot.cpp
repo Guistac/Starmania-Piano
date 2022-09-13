@@ -180,8 +180,9 @@ namespace MecanumRobot{
 
         //apply speed settings to control logic
 
-        if(RadioRemote::slowSpeedModeSwitch->isOn() && ControlLogic::isInRabbitMode()) ControlLogic::setSnailMode();
-        else if(RadioRemote::fastSpeedModeSwitch->isOn() && ControlLogic::isInSnailMode()) ControlLogic::setRabbitMode();
+        if(RadioRemote::slowSpeedModeSwitch->isOn() && !ControlLogic::isInSnailMode()) ControlLogic::setSnailMode();
+        else if(RadioRemote::fastSpeedModeSwitch->isOn() && !ControlLogic::isInRabbitMode()) ControlLogic::setRabbitMode();
+        else if(RadioRemote::fastSpeedModeSwitch->isOff() && RadioRemote::slowSpeedModeSwitch->isOff() && !ControlLogic::isInZeroSpeedMode()) ControlLogic::setZeroSpeedMode();
 
         if(!ControlLogic::isMoving()){
             if(RadioRemote::modeRelativeButton->isPressed() && ControlLogic::isInCompassMode()) ControlLogic::setRelativeMode();
@@ -287,7 +288,7 @@ namespace MecanumRobot{
             servoMotors[i].timer.begin(isrs[i], 100);
         }
         ControlLogic::reset();
-        ControlLogic::setSnailMode();
+        ControlLogic::setZeroSpeedMode();
         ControlLogic::setRelativeMode();
         controlState = ControlState::STOPPED;
         requestDisablePowerStages();
