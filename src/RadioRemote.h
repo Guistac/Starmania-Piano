@@ -13,11 +13,6 @@ namespace RadioRemote {
     extern Joystick* yAxisStick;
     extern Joystick* zAxisStick;
 
-    //extern Button* modeTamponButton;
-    //extern Button* modeMecanumButton;
-
-    //extern Button* homingTamponButton;
-
     extern Button* modeAbsoluteButton;
     extern Button* modeRelativeButton;
 
@@ -27,6 +22,6 @@ namespace RadioRemote {
     extern Switch* emergencyStopSwitch;
     //extern Button* rearmButton;
 
-    extern OutputSignal* speedOutputSignal;
-    extern OutputSignal* modeOutputSignal;
+    extern OutputSignal* controlModeOutputSignal;
+    extern OutputSignal* controlStateOutputSignal;
 }

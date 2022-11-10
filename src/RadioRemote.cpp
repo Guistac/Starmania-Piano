@@ -24,8 +24,8 @@ namespace RadioRemote{
     Joystick* yAxisStick = new Joystick(NEGATIVE_Y_AXIS_PIN, POSITIVE_Y_AXIS_PIN);
     Joystick* zAxisStick = new Joystick(NEGATIVE_Z_AXIS_PIN, POSITIVE_Z_AXIS_PIN);
 
-    OutputSignal* speedOutputSignal = new OutputSignal(SPEED_FEEDBACK_PIN);
-    OutputSignal* modeOutputSignal = new OutputSignal(MODE_FEEDBACK_PIN);
+    OutputSignal* controlModeOutputSignal = new OutputSignal(MODE_FEEDBACK_PIN);
+    OutputSignal* controlStateOutputSignal = new OutputSignal(STATE_FEEDBACK_PIN);
 
     bool b_armed = false;
     bool b_armingChanged = false;
@@ -51,8 +51,8 @@ namespace RadioRemote{
         yAxisStick->init();
         zAxisStick->init();
 
-        speedOutputSignal->init(false);
-        modeOutputSignal->init(false);
+        controlModeOutputSignal->init(false);
+        controlStateOutputSignal->init(false);
 
         emergencyStopSwitch->reset();
         reset();
@@ -65,11 +65,6 @@ namespace RadioRemote{
         if(emergencyStopSwitch->isOff()){
 
             //rearmButton->update();
-
-            //modeTamponButton->update();
-            //modeMecanumButton->update();
-
-            //homingTamponButton->update();
 
             modeAbsoluteButton->update();
             modeRelativeButton->update();

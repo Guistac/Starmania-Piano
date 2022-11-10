@@ -66,7 +66,7 @@
 #define EMERGENCY_STOP_PIN 23
 //#define REARM_BUTTON_PIN 27
 
-#define SPEED_FEEDBACK_PIN 19 //fast / slow speed
+#define STATE_FEEDBACK_PIN 19 //enabled / not enabled
 #define MODE_FEEDBACK_PIN 18 //mode absolute / relative
 
 //——————————————— LED PIN ASSIGNEMENT ———————————————
@@ -84,12 +84,12 @@
 #define BACK_LEFT_WHEEL_POSITION_MM     Vector2{.x = -700.0, .y = -700.0}
 #define BACK_RIGHT_WHEEL_POSITION_MM    Vector2{.x = 700.0, .y = -700.0}
 
-#define FAST_TRANSLATION_VELOCITY_LIMIT_MMPS 400.0  //translation velocity limit in millimeters per second
+#define FAST_TRANSLATION_VELOCITY_LIMIT_MMPS 500.0  //translation velocity limit in millimeters per second
 #define FAST_TRANSLATION_ACCELERATION_MMPS2 150.0   //fixed translation acceleration in millimeters per second squared
 #define FAST_ROTATION_VELOCITY_LIMIT_DEGPS 15.0     //rotation velocity limit in degrees per second 
 #define FAST_ROTATION_ACCELERATION_DEGPS2 5.0      //fixed rotation acceleration in degrees per second squared
 
-#define SLOW_TRANSLATION_VELOCITY_LIMIT_MMPS 200.0  //translation velocity limit in millimeters per second
+#define SLOW_TRANSLATION_VELOCITY_LIMIT_MMPS 250.0  //translation velocity limit in millimeters per second
 #define SLOW_TRANSLATION_ACCELERATION_MMPS2 150.0   //fixed translation acceleration in millimeters per second squared
 #define SLOW_ROTATION_VELOCITY_LIMIT_DEGPS 7.5     //rotation velocity limit in degrees per second
 #define SLOW_ROTATION_ACCELERATION_DEGPS2 5.0     //fixed rotation acceleration in degrees per second squared

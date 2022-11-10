@@ -192,8 +192,8 @@ namespace MecanumRobot{
             }
         }
 
-        RadioRemote::modeOutputSignal->set(ControlLogic::isInCompassMode());
-        RadioRemote::speedOutputSignal->set(ControlLogic::isInRabbitMode());
+        RadioRemote::controlStateOutputSignal->set(controlState == ControlState::ENABLED);
+        RadioRemote::controlModeOutputSignal->set(ControlLogic::isInCompassMode());
 
         if(controlState == ControlState::ENABLED){
             ControlLogic::setXVelocityNormalized(RadioRemote::xAxisStick->getValue());
