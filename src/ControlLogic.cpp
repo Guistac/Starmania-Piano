@@ -163,6 +163,10 @@ namespace ControlLogic{
             xVelocityTarget *= translationTargetVectorMagnitude;
             yVelocityTarget *= translationTargetVectorMagnitude;
         }
+        
+        //limit the target velocity to the velocity limit
+        if(rotVelTarg_degPerSec > rotVelLim_degPerSec) rotVelTarg_degPerSec = rotVelLim_degPerSec;
+        else if(rotVelTarg_degPerSec < -rotVelLim_degPerSec) rotVelTarg_degPerSec = -rotVelLim_degPerSec;
 
         //get current time point and time delta from last cycle
         uint32_t now = micros();
