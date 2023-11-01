@@ -84,15 +84,15 @@
 #define BACK_LEFT_WHEEL_POSITION_MM     Vector2{.x = -700.0, .y = -700.0}
 #define BACK_RIGHT_WHEEL_POSITION_MM    Vector2{.x = 700.0, .y = -700.0}
 
-#define FAST_TRANSLATION_VELOCITY_LIMIT_MMPS 500.0  //translation velocity limit in millimeters per second
-#define FAST_TRANSLATION_ACCELERATION_MMPS2 150.0   //fixed translation acceleration in millimeters per second squared
-#define FAST_ROTATION_VELOCITY_LIMIT_DEGPS 15.0     //rotation velocity limit in degrees per second 
-#define FAST_ROTATION_ACCELERATION_DEGPS2 5.0      //fixed rotation acceleration in degrees per second squared
+#define FAST_TRANSLATION_VELOCITY_LIMIT_MMPS 600.0  //translation velocity limit in millimeters per second
+#define FAST_TRANSLATION_ACCELERATION_MMPS2 175.0   //fixed translation acceleration in millimeters per second squared
+#define FAST_ROTATION_VELOCITY_LIMIT_DEGPS 17.0     //rotation velocity limit in degrees per second 
+#define FAST_ROTATION_ACCELERATION_DEGPS2 7.0      //fixed rotation acceleration in degrees per second squared
 
-#define SLOW_TRANSLATION_VELOCITY_LIMIT_MMPS 250.0  //translation velocity limit in millimeters per second
-#define SLOW_TRANSLATION_ACCELERATION_MMPS2 150.0   //fixed translation acceleration in millimeters per second squared
-#define SLOW_ROTATION_VELOCITY_LIMIT_DEGPS 7.5     //rotation velocity limit in degrees per second
-#define SLOW_ROTATION_ACCELERATION_DEGPS2 5.0     //fixed rotation acceleration in degrees per second squared
+#define SLOW_TRANSLATION_VELOCITY_LIMIT_MMPS 300.0  //translation velocity limit in millimeters per second
+#define SLOW_TRANSLATION_ACCELERATION_MMPS2 175.0   //fixed translation acceleration in millimeters per second squared
+#define SLOW_ROTATION_VELOCITY_LIMIT_DEGPS 9     //rotation velocity limit in degrees per second
+#define SLOW_ROTATION_ACCELERATION_DEGPS2 6.5     //fixed rotation acceleration in degrees per second squared
 
 #define HEADING_CORRECTION_FACTOR 1.176 //mesuré au milieu du grand atelier
 
