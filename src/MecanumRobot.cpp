@@ -185,11 +185,13 @@ namespace MecanumRobot{
         else if(RadioRemote::fastSpeedModeSwitch->isOff() && RadioRemote::slowSpeedModeSwitch->isOff() && !ControlLogic::isInZeroSpeedMode()) ControlLogic::setZeroSpeedMode();
 
         if(!ControlLogic::isMoving()){
+            /*
             if(RadioRemote::modeRelativeButton->isPressed() && ControlLogic::isInCompassMode()) ControlLogic::setRelativeMode();
             else if(RadioRemote::modeAbsoluteButton->isPressed()) {
                 if(ControlLogic::isInRelativeMode()) ControlLogic::setCompassMode();
                 ControlLogic::zeroHeadingOnFront();
             }
+            */
         }
 
         RadioRemote::controlStateOutputSignal->set(controlState == ControlState::ENABLED);
